@@ -13,30 +13,27 @@ vector<int> solution(vector<int> progresses, vector<int> speeds) {
 	{
 		int temp = (100 - progresses[i]) / speeds[i];
 		int t = (100 - progresses[i]) % speeds[i] == 0 ? temp : temp + 1;
-		
+
 		q.push(t);
 	}
-	
-	int front = 101;
+
+	int front = q.front();
 	int count = 0;
 	while (!q.empty())
 	{
 		if (front >= q.front())
 		{
 			count++;
-			front = q.front();
 			q.pop();
 		}
 		else
 		{
-		
 			answer.emplace_back(count);
-			front = 101;
+			front = q.front();
 			count = 0;
 		}
 	}
-    
 	answer.emplace_back(count);
-	
+
 	return answer;
 }
