@@ -17,32 +17,26 @@ vector<int> solution(vector<int> progresses, vector<int> speeds) {
 		q.push(t);
 	}
 	
-		int front = q.front();
-	
+	int front = 101;
 	int count = 0;
 	while (!q.empty())
 	{
 		if (front >= q.front())
 		{
-			cout << "front : " << front << ", qfront : " << q.front() << endl;
 			count++;
-			
+			front = q.front();
 			q.pop();
 		}
 		else
 		{
 		
-			cout << "count : " << count << endl;
 			answer.emplace_back(count);
-			front = q.front();
+			front = 101;
 			count = 0;
 		}
 	}
+    
 	answer.emplace_back(count);
-
-	for (auto& i : answer)
-	{
-		cout << i << endl;
-	}
+	
 	return answer;
 }
