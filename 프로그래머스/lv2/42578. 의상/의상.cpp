@@ -1,0 +1,20 @@
+#include <string>
+#include <vector>
+#include <unordered_map>
+
+using namespace std;
+
+int solution(vector<vector<string>> clothes) {
+	int answer = 1;
+	unordered_map<string, int> map;
+	for (size_t i = 0; i < clothes.size(); i++)
+	{
+		map[clothes[i][1]]++;
+	}
+
+	for (auto i : map) {
+		answer *= (i.second+1);
+	}
+
+	return answer - 1;
+}
