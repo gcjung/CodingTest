@@ -4,41 +4,40 @@
 
 using namespace std;
 
-
 int solution(vector<string> want, vector<int> number, vector<string> discount) {
 	int answer = 0;
-	unordered_map<string, int> map;
-	unordered_map<string, int> checkMap;
+	unordered_map<string, int> wantMap;
+	unordered_map<string, int> discountMap;
 
 	int totalCount = 0;
 	for (size_t i = 0; i < want.size(); i++)
 	{
-		map[want[i]] = number[i];
+		wantMap[want[i]] = number[i];
 		totalCount += number[i];
 	}
 
 	int idx = 0;
 	while (idx <= discount.size() - totalCount)
 	{
-		for (size_t i = idx; i < totalCount + idx; i++)
+		for (size_t i = 0; i < totalCount; i++)
 		{
-			checkMap[discount[i]]++;
+			discountMap[discount[i+idx]]++;
 		}
-        idx++;
+
 		bool isOK = true;
-		for (auto i : map)
+		for (auto i : wantMap)
 		{
-			if (i.second > checkMap[i.first])
+			if (i.second > discountMap[i.first])
 			{
 				isOK = false;
 				break;
 			}
 		}
-		checkMap.clear();
+		idx++;
+		discountMap.clear();
+
 		if (isOK) answer++;
 	}
-
-
 
 	return answer;
 }
