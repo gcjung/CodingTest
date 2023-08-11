@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 
 class Solution {
-     int[] dx = { -1, 1, 0, 0 };
+    int[] dx = { -1, 1, 0, 0 };
     int[] dy = { 0, 0, -1, 1 };
     Queue<(int, int)> queue = new Queue<(int, int)>();
 
